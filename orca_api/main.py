@@ -17,6 +17,9 @@ app.include_router(events_router.router, prefix="/api", tags=["events"])
 from orca_api.fstack import router as fstack_router
 app.include_router(fstack_router.router, prefix="/api", tags=["fstack"])
 
+from orca_api.llm_gateway import router as gateway_router
+app.include_router(gateway_router.router, prefix="/api", tags=["providers"])
+
 @app.get("/")
 async def root():
     return {"message": "ORCA API Root"}
