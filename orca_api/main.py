@@ -11,6 +11,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from orca_api.fspu import router as fspu_router
+app.include_router(fspu_router.router, prefix="/api", tags=["fspu"])
+
 @app.get("/")
 async def root():
     return {"message": "ORCA API Root"}
