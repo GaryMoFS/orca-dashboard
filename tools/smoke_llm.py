@@ -58,16 +58,34 @@ async def smoke_llm(port):
 
         # 3. Check Artifact
         artifact_path = f"runs/{run_id}/artifacts/llm_output.txt"
+        meta_path = f"runs/{run_id}/artifacts/llm_output.meta.json"
+        
         if os.path.exists(artifact_path):
             with open(artifact_path, "r") as f:
                 content = f.read()
                 print(f"Artifact Content: {content[:50]}...")
                 if len(content) > 0:
                     print("SUCCESS: Artifact created and seeded.")
-                    return True
+                else: 
+                     print("FAILURE: Artifact empty")
+                     return False
         else:
             print("FAILURE: Artifact missing.")
             return False
+
+        if os.path.exists(meta_path):
+            with open(meta_path, "r") as f:
+                meta = json.load(f)
+                if "output_sha256" in meta and "prompt_sha256" in meta:
+                    print("SUCCESS: Metadata file valid.")
+                else:
+                    print("FAILURE: Metadata missing keys")
+                    return False
+        else:
+            print("FAILURE: Metadata file missing.")
+            return False
+            
+        return True
             
     return False
 

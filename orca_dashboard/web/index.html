@@ -116,8 +116,8 @@
     </div>
 
     <script>
-        const API_BASE = "http://localhost:8000/api";
-        const WS_URL = "ws://localhost:8000/api/ws/events";
+        const API_BASE = "http://localhost:8001/api";
+        const WS_URL = "ws://localhost:8001/api/ws/events";
 
         let currentRunId = null;
         let ws = null;
@@ -126,11 +126,58 @@
             ws = new WebSocket(WS_URL);
             ws.onmessage = (event) => {
                 const timeline = document.getElementById('timeline');
-                console.log("WS Msg:", event.data);
-                const div = document.createElement('div');
-                div.className = 'event-item';
-                div.textContent = `[${new Date().toLocaleTimeString()}] ${event.data}`;
-                timeline.prepend(div);
+
+                // Handle raw text messages (old smoke tests)
+                if (!event.data.startsWith("{")) {
+                    const div = document.createElement('div');
+                    div.className = 'event-item';
+                    div.textContent = `[${new Date().toLocaleTimeString()}] ${event.data}`;
+                    timeline.prepend(div);
+                    return;
+                }
+
+                // Parse JSON Events
+                try {
+                    const evt = JSON.parse(event.data);
+
+                    // 1. Handle Streaming Text (llm.delta)
+                    if (evt.type === "llm.delta") {
+                        const outDiv = document.getElementById('llm-output');
+                        if (outDiv.style.display !== 'none') {
+                            outDiv.textContent += evt.delta;
+                        }
+                        return; // Don't spam timeline
+                    }
+
+                    // 2. Handle Completion (llm.completed)
+                    if (evt.type === "llm.completed") {
+                        const statusSpan = document.getElementById('llm-status');
+                        statusSpan.textContent = `Completed: ${evt.provider_id} / ${evt.model}`;
+                    }
+
+                    // 3. Handle Artifacts
+                    if (evt.type === "artifact.written" && evt.kind === "llm_output") {
+                        const div = document.createElement('div');
+                        div.className = 'event-item';
+                        div.style.color = "#4caf50";
+                        div.textContent = `[Artifact] Saved ${evt.path} (SHA256: ${evt.sha256.substring(0, 8)}...)`;
+                        timeline.prepend(div);
+                        return;
+                    }
+
+                    // Log other structured events to timeline
+                    const div = document.createElement('div');
+                    div.className = 'event-item';
+                    div.textContent = `[${new Date().toLocaleTimeString()}] ${evt.type}`;
+                    timeline.prepend(div);
+
+                } catch (e) {
+                    // Fallback for non-JSON
+                    const div = document.createElement('div');
+                    div.className = 'event-item';
+                    div.textContent = `[${new Date().toLocaleTimeString()}] ${event.data}`;
+                    timeline.prepend(div);
+                }
             };
             ws.onopen = () => console.log("Connected to ORCA WS");
         }
@@ -182,7 +229,8 @@
                     statusDiv.innerHTML = `Local AI: <span style="color: #f44336">○ Not Detected</span>`;
                 }
             } catch (e) {
-                statusDiv.textContent = "Local AI: Error checking status";
+                console.error(e);
+                statusDiv.innerHTML = `Local AI: Error (CORS?). <span style="font-size:0.8em">Tip: run <code>python -m http.server 5173</code></span>`;
             }
         }
 
@@ -208,7 +256,7 @@
                     body: JSON.stringify({
                         run_id: currentRunId,
                         prompt: prompt,
-                        stream: false // Simple mode for MVP dashboard
+                        stream: true
                     })
                 });
                 const data = await res.json();
@@ -216,9 +264,15 @@
                 if (data.error) {
                     outDiv.textContent = "Error: " + data.error;
                     statusSpan.textContent = "Failed";
-                } else {
-                    outDiv.textContent = data.output_preview + (data.output_preview.length >= 50 ? "..." : "");
-                    statusSpan.textContent = `Used: ${data.provider} / ${data.model}`;
+                }
+                // Don't overwrite outDiv here if streaming happened, 
+                // but if stream=false was forced by server (e.g. stub), update it.
+                // The router returns the full text preview in both cases.
+                // If we relied only on stream, we wouldn't use this. 
+                // But since we clear it above, we should trust the WS stream OR the final payload.
+                // Best UX: if empty (WS failed?), use payload.
+                if (outDiv.textContent.length === 0) {
+                    outDiv.textContent = data.output_preview;
                 }
             } catch (e) {
                 console.error(e);
