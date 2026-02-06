@@ -23,6 +23,10 @@ app.include_router(gateway_router.router, prefix="/api", tags=["providers"])
 from orca_api.fspu import router as fspu_router
 app.include_router(fspu_router.router, prefix="/api", tags=["fspu"])
 
+@app.get("/api/health")
+async def health_check():
+    return {"ok": True}
+
 @app.get("/")
 async def root():
     return {"message": "ORCA API Root"}

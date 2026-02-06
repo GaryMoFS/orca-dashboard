@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORCA Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --accent: #00bcd4;
+            --card-bg: #1e1e1e;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            background: var(--accent);
+            border: none;
+            padding: 10px 20px;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        button:hover { opacity: 0.9; }
+        #timeline {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 300px;
+            border: 1px solid #333;
+        }
+        .event-item {
+            border-bottom: 1px solid #333;
+            padding: 8px 0;
+            font-family: monospace;
+        }
+        #settings-modal {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: #252525;
+            padding: 20px;
+            border: 1px solid #444;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>ORCA Control</h1>
+    <div class="controls">
+        <button id="btn-start" onclick="startRun()">Start Run</button>
+        <button id="btn-close" onclick="closeRun()">Close Run</button>
+        <button onclick="toggleSettings()">⚙️</button>
+    </div>
+</div>
+
+<div id="timeline">
+    <div style="color: #666;">Waiting for events...</div>
+</div>
+
+<div id="settings-modal">
+    <h3>Settings</h3>
+    <label><input type="checkbox" id="dark-mode" checked> Dark Mode</label>
+    <br><br>
+    <button onclick="toggleSettings()">Close</button>
+</div>
+
+<script>
+    const API_BASE = "http://localhost:8000/api";
+    const WS_URL = "ws://localhost:8000/api/ws/events";
+    
+    let currentRunId = null;
+    let ws = null;
+
+    function initWS() {
+        ws = new WebSocket(WS_URL);
+        ws.onmessage = (event) => {
+            const timeline = document.getElementById('timeline');
+            console.log("WS Msg:", event.data);
+            const div = document.createElement('div');
+            div.className = 'event-item';
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${event.data}`;
+            timeline.prepend(div);
+        };
+        ws.onopen = () => console.log("Connected to ORCA WS");
+    }
+
+    async function startRun() {
+        try {
+            const res = await fetch(`${API_BASE}/runs/start`, { method: 'POST' });
+            const data = await res.json();
+            currentRunId = data.run_id;
+            console.log("Run started:", currentRunId);
+        } catch (e) { console.error(e); }
+    }
+
+    async function closeRun() {
+        if (!currentRunId) return alert("No active run");
+        await fetch(`${API_BASE}/runs/${currentRunId}/close`, { method: 'POST' });
+        console.log("Run closed");
+        currentRunId = null;
+    }
+
+    function toggleSettings() {
+        const modal = document.getElementById('settings-modal');
+        modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Save settings to localStorage
+    document.getElementById('dark-mode').addEventListener('change', (e) => {
+        localStorage.setItem('orca_dark_mode', e.target.checked);
+    });
+
+    // Init
+    initWS();
+</script>
+
+</body>
+</html>

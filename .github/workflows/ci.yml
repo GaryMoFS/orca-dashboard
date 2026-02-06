@@ -6,7 +6,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
       - name: Verify Specs Exists
         run: |
           ls -la spec/*.schema.json
           echo "Minimal specs present."
+      - name: Run Smoke Tests
+        run: |
+          python tools/smoke_verify.py
+          python tools/smoke_providers.py
+          python tools/smoke_plan.py
+          python tools/smoke_events.py
