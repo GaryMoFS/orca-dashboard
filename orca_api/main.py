@@ -11,6 +11,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from orca_api.fstack import router as fstack_router
+app.include_router(fstack_router.router, prefix="/api", tags=["fstack"])
+
 @app.get("/")
 async def root():
     return {"message": "ORCA API Root"}
