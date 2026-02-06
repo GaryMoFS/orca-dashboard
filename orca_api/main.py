@@ -20,8 +20,8 @@ app.include_router(fstack_router.router, prefix="/api", tags=["fstack"])
 from orca_api.llm_gateway import router as gateway_router
 app.include_router(gateway_router.router, prefix="/api", tags=["providers"])
 
-from orca_api.fspu import router as fspu_router
-app.include_router(fspu_router.router, prefix="/api", tags=["fspu"])
+from orca_api.llm import router as llm_router
+app.include_router(llm_router.router, prefix="/api", tags=["llm"])
 
 @app.get("/api/health")
 async def health_check():

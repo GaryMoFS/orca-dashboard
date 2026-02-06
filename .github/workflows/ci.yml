@@ -23,3 +23,4 @@ jobs:
           python tools/smoke_providers.py
           python tools/smoke_plan.py
           python tools/smoke_events.py
+          python tools/smoke_llm.py
