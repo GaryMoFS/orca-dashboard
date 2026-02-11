@@ -1,0 +1,14 @@
+[
+  {
+    "role": "user",
+    "content": "Test Message",
+    "ts": "2026-02-06T23:53:58.136044Z"
+  },
+  {
+    "role": "assistant",
+    "content": "Test message received!",
+    "ts": "2026-02-06T23:54:05.452876Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:latest"
+  }
+]

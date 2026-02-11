@@ -1,0 +1,10 @@
+{
+    "active": [
+        {
+            "id": "welcome.01",
+            "label": "Say 'Hello' to Orca",
+            "target": "chat.basic",
+            "completed": false
+        }
+    ]
+}

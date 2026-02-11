@@ -1,0 +1,10 @@
+{
+  "llm_provider": "ollama",
+  "tts_provider": "lm_studio",
+  "chat_mode": "offline",
+  "tts_mode": "offline",
+  "voice_local": "tara",
+  "voice_cloud": "placeholder",
+  "llm_model": "llama3:latest",
+  "tts_model": "Loading..."
+}

@@ -1,0 +1,14 @@
+{
+    "id": "persona.work@0.1",
+    "name": "Orca Professional",
+    "version": "0.1",
+    "entitlement": {
+        "mode": "paid",
+        "sku": "sku.orca.pro.01"
+    },
+    "components": {
+        "layout": "ui.layout.json",
+        "theme": "theme.json",
+        "quests": "quests.json"
+    }
+}

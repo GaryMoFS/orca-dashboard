@@ -1,0 +1,13 @@
+{
+  "id": "persona.test",
+  "name": "Orca Test Persona",
+  "version": "0.1.1",
+  "entitlement": {
+    "mode": "free"
+  },
+  "components": {
+    "layout": "ui.layout.json",
+    "theme": "theme.json",
+    "quests": "quests.json"
+  }
+}

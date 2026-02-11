@@ -24,3 +24,8 @@ jobs:
           python tools/smoke_plan.py
           python tools/smoke_events.py
           python tools/smoke_llm.py
+          python tools/smoke_chat.py
+          python tools/smoke_orpheus.py
+          python tools/smoke_system.py
+          python tools/smoke_upload.py
+          python tools/smoke_tts.py

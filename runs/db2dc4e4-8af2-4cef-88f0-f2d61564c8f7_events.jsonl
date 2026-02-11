@@ -1,0 +1,2 @@
+{"type": "llm.requested", "timestamp": 1770494355.792154, "provider_id": "ollama_local", "model": "llama4:maverick", "prompt_sha256": "d27ba2c91cef974ada24a7d04542eb0ce5316bc6a36fabfe890fb80ffb321914", "stream": true}
+{"type": "llm.error", "timestamp": 1770494359.0863442, "message": "Ollama Error: 500"}

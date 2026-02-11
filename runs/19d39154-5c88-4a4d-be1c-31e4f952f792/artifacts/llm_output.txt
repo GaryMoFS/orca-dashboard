@@ -1,0 +1,9 @@
+Good morning! According to my system, today's date is Sunday, February 8th, 2026.
+
+As for your question, Tuesday is a regular day that occurs every 7 days. To find out how many Tuesdays are in a year, we can divide the total number of days in a year by 7.
+
+There are 365 days in a non-leap year and 366 days in a leap year. Since 2026 is not a leap year, let's use the value of 365.
+
+365 ÷ 7 = 52
+
+So, there are 52 Tuesdays in the year 2026.

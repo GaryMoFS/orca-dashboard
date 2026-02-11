@@ -1,0 +1,14 @@
+[
+  {
+    "role": "user",
+    "content": "what day is it today Tuesday as an example and how many of those day are in the year 2026",
+    "ts": "2026-02-07T04:36:56.666320Z"
+  },
+  {
+    "role": "assistant",
+    "content": "It's Saturday, February 7th, 2026, at 2:36 PM (E. Australia Standard Time).\n\nThere are 52 Tuesdays in a non-leap year like 2026.",
+    "ts": "2026-02-07T04:36:57.136031Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:latest"
+  }
+]

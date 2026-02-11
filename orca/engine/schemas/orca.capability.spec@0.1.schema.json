@@ -1,0 +1,133 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ORCA Capability Spec",
+    "type": "object",
+    "required": [
+        "id",
+        "title",
+        "description",
+        "status",
+        "inputs",
+        "outputs"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "pattern": "^cap\\.[a-z0-9_]+$"
+        },
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "status": {
+            "enum": [
+                "idea",
+                "stub",
+                "demo",
+                "prod"
+            ]
+        },
+        "inputs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "outputs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "persona_gates": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "scripts": {
+            "type": "object",
+            "properties": {
+                "verify": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "docs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "schemas": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "code_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "actions": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "title",
+                    "entrypoint",
+                    "param_schema"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "entrypoint": {
+                        "type": "string",
+                        "pattern": "^python:[a-zA-Z0-9_\\.]+:[a-zA-Z0-9_]+$"
+                    },
+                    "param_schema": {
+                        "type": "object",
+                        "properties": {
+                            "properties": {
+                                "type": "object"
+                            },
+                            "required": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "outputs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "role": "user",
+    "content": "what day is it today Tuesday as an example and how many of those day are in the year 2026",
+    "ts": "2026-02-07T04:33:32.763270Z"
+  },
+  {
+    "role": "assistant",
+    "content": "Today is Saturday!\n\nTuesday is the 2nd day of the week. There are 52 Tuesdays in a non-leap year (like 2026).",
+    "ts": "2026-02-07T04:33:36.531300Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:latest"
+  }
+]

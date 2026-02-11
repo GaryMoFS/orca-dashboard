@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ORCA Director State",
+    "type": "object",
+    "properties": {
+        "status": {
+            "type": "string"
+        },
+        "active_quest_id": {
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "counts": {
+            "type": "object",
+            "properties": {
+                "inbox": {
+                    "type": "integer"
+                },
+                "quests": {
+                    "type": "integer"
+                },
+                "runs": {
+                    "type": "integer"
+                }
+            }
+        },
+        "last_event_ts": {
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    },
+    "required": [
+        "status",
+        "counts"
+    ]
+}

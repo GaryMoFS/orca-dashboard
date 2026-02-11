@@ -1,0 +1,27 @@
+{
+  "persona.home": {
+    "active_version": "0.1",
+    "versions": [
+      "0.1"
+    ]
+  },
+  "persona.test": {
+    "active_version": "0.1.0",
+    "versions": [
+      "0.1.0",
+      "0.1.1"
+    ]
+  },
+  "persona.work": {
+    "active_version": "0.1",
+    "versions": [
+      "0.1"
+    ]
+  },
+  "persona.test.zip": {
+    "active_version": "0.1.2",
+    "versions": [
+      "0.1.2"
+    ]
+  }
+}

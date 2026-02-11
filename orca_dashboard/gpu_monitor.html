@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORCA GPU Telemetry</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            border: 2px solid #00ff41;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 10px #00ff41;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 1px solid #00ff41;
+            padding-bottom: 10px;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .bar-container {
+            width: 100%;
+            background-color: #333;
+            height: 20px;
+            margin-top: 5px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background-color: #00ff41;
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .models-list {
+            margin-top: 20px;
+            border-top: 1px dashed #00ff41;
+            padding-top: 10px;
+        }
+
+        .model-item {
+            color: #ccc;
+        }
+
+        .refresh-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #00ff41;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .refresh-btn:hover {
+            background: #fff;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>GPU ORCHESTRATOR STUB</h1>
+
+        <div class="metric">
+            <span>TIER:</span>
+            <span id="tier-display">LOADING...</span>
+        </div>
+
+        <div class="metric">
+            <span>VRAM TOTAL:</span>
+            <span id="total-vram">0 MB</span>
+        </div>
+
+        <div class="metric">
+            <span>VRAM USAGE:</span>
+            <span id="usage-text">0 / 0 MB (0%)</span>
+        </div>
+
+        <div class="bar-container">
+            <div id="usage-bar" class="bar-fill"></div>
+        </div>
+
+        <div class="models-list">
+            <h3>ACTIVE MODELS</h3>
+            <div id="models-container">Checking...</div>
+        </div>
+
+        <p class="error" id="error-msg">Connection Failed. Is ORCA Runtime running on port 7010?</p>
+
+        <button class="refresh-btn" onclick="fetchTelemetry()">REFRESH NOW</button>
+    </div>
+
+    <script>
+        const API_URL = "http://127.0.0.1:7010/runtime/gpu/status";
+
+        async function fetchTelemetry() {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error("Network response was not ok");
+
+                const data = await response.json();
+
+                document.getElementById('error-msg').style.display = 'none';
+
+                // Tier
+                document.getElementById('tier-display').innerText = data.tier;
+
+                // VRAM
+                const total = data.total_vram_mb;
+                const used = data.usage.used;
+                const pct = total > 0 ? ((used / total) * 100).toFixed(1) : 0;
+
+                document.getElementById('total-vram').innerText = total + " MB";
+                document.getElementById('usage-text').innerText = `${used} / ${total} MB (${pct}%)`;
+                document.getElementById('usage-bar').style.width = pct + "%";
+
+                // Models
+                const modelsDiv = document.getElementById('models-container');
+                modelsDiv.innerHTML = "";
+                if (Object.keys(data.active_models).length === 0) {
+                    modelsDiv.innerHTML = "<div class='model-item'>No Active Models</div>";
+                } else {
+                    for (const [name, info] of Object.entries(data.active_models)) {
+                        const div = document.createElement('div');
+                        div.className = 'model-item';
+                        div.innerText = `[${info.type}] ${name}`;
+                        modelsDiv.appendChild(div);
+                    }
+                }
+
+            } catch (error) {
+                console.error("Fetch failed:", error);
+                document.getElementById('error-msg').style.display = 'block';
+                document.getElementById('tier-display').innerText = "OFFLINE";
+            }
+        }
+
+        // Auto-refresh every 2 seconds
+        setInterval(fetchTelemetry, 2000);
+
+        // Initial load
+        fetchTelemetry();
+    </script>
+
+</body>
+
+</html>

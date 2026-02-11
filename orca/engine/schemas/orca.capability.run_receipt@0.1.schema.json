@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ORCA Capability Run Receipt",
+    "type": "object",
+    "required": [
+        "receipt_id",
+        "ts",
+        "capability_id",
+        "status"
+    ],
+    "properties": {
+        "receipt_id": {
+            "type": "string"
+        },
+        "ts": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "capability_id": {
+            "type": "string",
+            "pattern": "^cap\\.[a-z0-9_]+$"
+        },
+        "status": {
+            "enum": [
+                "success",
+                "failure",
+                "running"
+            ]
+        },
+        "inputs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "outputs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "command": {
+            "type": "string"
+        },
+        "exit_code": {
+            "type": "integer"
+        },
+        "artifacts": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "hashes": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "notes": {
+            "type": "string"
+        }
+    }
+}

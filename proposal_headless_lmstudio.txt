@@ -1,0 +1,77 @@
+LM STUDIO HEADLESS & ORPHEUS INTEGRATION PROPOSAL
+===================================================
+
+1. FINDINGS
+-----------
+- **CLI Availability**: CONFIRMED. `lms.exe` is present at `C:\Users\Gary\.lmstudio\bin\lms.exe`.
+- **Headless Capability**: CONFIRMED. `lms server start` and `lms load` commands are available.
+- **Model Status**: CONFIRMED. The specific Orpheus GGUF model exists at the path provided.
+- **Port Flexibility**: CONFIRMED. Server accepts `--port 1234` argument.
+
+2. RECOMMENDED APPROACH (CLI)
+-----------------------------
+We should utilize the official `lms` CLI tool rather than a complex API wrapper. The CLI provides robust commands to start the server and load models directly from disk without needing to "import" them into the internal catalog first.
+
+To verify NVIDIA RTX 5090 compatibility, we will use the `--gpu max` flag. If LM Studio's internal engine is updated, this will utilize the GPU. If it fails (due to driver mismatch similar to PyTorch), we can fall back to CPU or partial offload easily via flags.
+
+3. EXACT COMMAND SEQUENCES
+--------------------------
+
+### A. Start Server (Port 1234)
+This command starts the local server on the required port.
+```powershell
+lms server start --port 1234 --cors=true
+```
+
+### B. Load Orpheus Model
+ids: "orpheus-3b-0.1-ft-q4_k_m" (Matches Orpheus-FastAPI expectation)
+GPU: "max" (Attempts full offload to RTX 5090)
+Context: 8192 (As recommended in docs/transcript)
+
+```powershell
+lms load "C:\Users\Gary\Downloads\ebook2audiobook-main\ebook2audiobook-main\ebook2audiobook-orpheus\orpheus-3b-0.1-ft-q4_k_m.gguf" --identifier "orpheus-3b-0.1-ft-q4_k_m" --gpu max --context-length 8192
+```
+
+### C. Verify Success
+Check if model is loaded in memory:
+```powershell
+lms ps
+```
+Check if API is responsive:
+```powershell
+Invoke-RestMethod -Uri "http://127.0.0.1:1234/v1/models"
+```
+
+4. AUTOMATION (HANDS-FREE)
+--------------------------
+To make this "hands-free" and survive reboots, create a simple Batch file in the Startup folder.
+
+**File Path**: `C:\Users\Gary\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\launch_headless_ai.bat`
+
+**Content**:
+```batch
+@echo off
+echo Starting LM Studio Server...
+call lms server start --port 1234 --cors=true
+timeout /t 5
+
+echo Loading Orpheus Model...
+call lms load "C:\Users\Gary\Downloads\ebook2audiobook-main\ebook2audiobook-main\ebook2audiobook-orpheus\orpheus-3b-0.1-ft-q4_k_m.gguf" --identifier "orpheus-3b-0.1-ft-q4_k_m" --gpu max --context-length 8192
+
+echo AI Server Ready.
+pause
+```
+
+5. RISKS & MITIGATIONS
+----------------------
+- **RTX 5090 Compatibility**: LM Studio uses `llama.cpp`. If the bundled version is too old for Blackwell (sm_120), it may crash or fallback to CPU.
+  - *Mitigation*: Run `lms load` manually once to check output. If it fails, check for LM Studio updates (Beta versions often have newer CUDA kernels).
+- **Port Conflicts**: Port 1234 is non-standard but could be in use.
+  - *Mitigation*: `lms server start` will report failure if port is busy.
+- **GUI Dependency**: `lms` might launch the full electron GUI in the background. This consumes some RAM (~500MB) but is acceptable for "Hands-Free" operation on a 5090 system.
+
+6. NEXT STEPS
+-------------
+1. Run the **Start Server** command manually to confirm firewall prompt/acceptance.
+2. Run the **Load Model** command manually to verify 5090 offload works (check `nvidia-smi` while loading).
+3. If successful, authorize creation of `launch_headless_ai.bat`.

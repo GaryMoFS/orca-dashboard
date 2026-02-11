@@ -1,0 +1,38 @@
+[
+  {
+    "role": "user",
+    "content": "what day is it today Tuesday as an example and how many of those day are in the year 2026",
+    "ts": "2026-02-07T04:59:03.543569Z"
+  },
+  {
+    "role": "assistant",
+    "content": "It's Saturday, February 7th, 2026.",
+    "ts": "2026-02-07T04:59:04.674891Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:latest"
+  },
+  {
+    "role": "user",
+    "content": "how many of those day are in the year 2026",
+    "ts": "2026-02-07T05:00:27.823071Z"
+  },
+  {
+    "role": "assistant",
+    "content": "There are 365 days in a non-leap year and 366 days in a leap year. Since 2026 is not a leap year, there are 365 days.",
+    "ts": "2026-02-07T05:00:28.241356Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:latest"
+  },
+  {
+    "role": "user",
+    "content": "what day is it today Tuesday as an example and how many of those day are in the year 2026",
+    "ts": "2026-02-07T05:00:44.246158Z"
+  },
+  {
+    "role": "assistant",
+    "content": "It's Saturday, February 7th, 2026.\n\nThere are 365 days in a non-leap year and 366 days in a leap year. Since 2026 is not a leap year, there are 365 days.",
+    "ts": "2026-02-07T05:00:44.771384Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:latest"
+  }
+]

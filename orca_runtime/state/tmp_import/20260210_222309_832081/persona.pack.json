@@ -1,0 +1,13 @@
+{
+  "id": "persona.test.zip",
+  "name": "Orca Student",
+  "version": "0.1.3",
+  "entitlement": {
+    "mode": "free"
+  },
+  "components": {
+    "layout": "ui.layout.json",
+    "theme": "theme.json",
+    "quests": "quests.json"
+  }
+}

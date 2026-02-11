@@ -15,6 +15,9 @@ async def create_plan(req: PlanRequest):
     # 1. Check if Ollama is available (via internal probe call or logic duplication)
     # Ideally should use a shared service, but for now we duplicate the check for isolation
     from orca_api.llm_gateway.router import check_ollama
+    from orca_api.fstack.manifest_bridge import ManifestBuilder
+    import json
+    
     ollama_status = await check_ollama(timeout=0.5)
     
     selected_provider = "local-stub"
@@ -27,7 +30,7 @@ async def create_plan(req: PlanRequest):
         selected_provider = "ollama_local"
         reason = "ollama_no_models"
     
-    plan = {
+    plan_content = {
         "status": "planned",
         "provider": selected_provider,
         "reason_code": reason,
@@ -37,7 +40,16 @@ async def create_plan(req: PlanRequest):
         ]
     }
     
-    # Emit event (in real app, this would push to event bus)
-    print(f"EVENT: fspu.plan_selected - {plan}")
+    # Create manifest
+    mb = ManifestBuilder(actor_id="fspu-planner-v1")
+    mb.add_artifact("plan.json", json.dumps(plan_content).encode("utf-8"), "application/json")
+    mb.set_provenance(source_task_id="req-" + req.task_description[:8], methodology="heuristic-v1", params={"provider": selected_provider})
+    manifest = mb.export()
     
-    return plan
+    # Emit event (in real app, this would push to event bus)
+    print(f"EVENT: fspu.plan_signed - {manifest['id']}")
+    
+    return {
+        "plan": plan_content,
+        "manifest": manifest
+    }

@@ -1,0 +1,30 @@
+{
+    "chat.basic": {
+        "capabilities": []
+    },
+    "chat.advanced": {
+        "capabilities": [
+            "llm.streaming"
+        ]
+    },
+    "tts.standard": {
+        "capabilities": [
+            "audio.render"
+        ]
+    },
+    "provenance.viewer": {
+        "capabilities": [
+            "assets.verify"
+        ]
+    },
+    "provenance.bundle": {
+        "capabilities": [
+            "provenance.bundle"
+        ]
+    },
+    "admin.audit": {
+        "capabilities": [
+            "admin.audit"
+        ]
+    }
+}

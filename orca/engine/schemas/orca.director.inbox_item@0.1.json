@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ORCA Director Inbox Item",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "image",
+                "pdf",
+                "text",
+                "unknown"
+            ]
+        },
+        "created_ts": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "filenames": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "artifacts": {
+            "type": "object",
+            "properties": {
+                "preview": {
+                    "type": "string"
+                },
+                "ocr": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "required": [
+        "id",
+        "type",
+        "created_ts",
+        "filenames"
+    ]
+}

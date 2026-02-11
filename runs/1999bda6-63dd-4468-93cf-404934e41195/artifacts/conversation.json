@@ -1,0 +1,14 @@
+[
+  {
+    "role": "user",
+    "content": "what day is it today Tuesday as an example and how many of those day are in the year 2026",
+    "ts": "2026-02-07T03:55:14.420740Z"
+  },
+  {
+    "role": "assistant",
+    "content": "Today is Saturday, February 7th, 2026.",
+    "ts": "2026-02-07T03:55:14.721795Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:latest"
+  }
+]

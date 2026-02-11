@@ -1,0 +1,26 @@
+[
+  {
+    "role": "user",
+    "content": "what day is it today Tuesday as an example and how many of those day are in the year 2026",
+    "ts": "2026-02-07T22:12:08.879071Z"
+  },
+  {
+    "role": "assistant",
+    "content": "G'day! As ORCA Control, I'm happy to help you with that.\n\nAccording to my systems, today's date is indeed Sunday, February 8th, 2026. To answer your question, Tuesday would be the day of the week that falls between Monday and Wednesday.\n\nThere are exactly 365 days in the year 2026 (not accounting for leap years).",
+    "ts": "2026-02-07T22:12:13.298695Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:latest"
+  },
+  {
+    "role": "user",
+    "content": "what day is it today Tuesday as an example and how many of those day are in the year 2026",
+    "ts": "2026-02-07T22:13:13.323690Z"
+  },
+  {
+    "role": "assistant",
+    "content": "G'day! As ORCA Control, I'm happy to help you with that.\n\nAccording to my systems, today's date is indeed Sunday, February 8th, 2026. To answer your question, Tuesday would be the day of the week that falls between Monday and Wednesday.\n\nThere are exactly 365 days in the year 2026 (not accounting for leap years).",
+    "ts": "2026-02-07T22:13:14.017309Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:8b"
+  }
+]

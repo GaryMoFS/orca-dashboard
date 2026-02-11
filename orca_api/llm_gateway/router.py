@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from typing import List, Dict
 import random
-import aiohttp
+# import aiohttp 
 import asyncio
 
 router = APIRouter()
@@ -16,24 +16,62 @@ class ProviderBase:
         # Simulate latency in ms
         return random.uniform(10, 200)
 
-async def check_ollama(timeout=2.0) -> dict:
-    url = "http://localhost:11434/api/tags"
+import subprocess
+import shutil
+import json
+
+import requests
+import json
+import asyncio
+
+def check_ollama_sync(timeout=2.0) -> dict:
+    models = []
+    active = False
+    provider = "none"
+
+    models_ollama = []
+    models_lm_studio = []
+
+    # 1. Check Ollama (11434)
     try:
-        async with aiohttp.ClientSession() as session:
-            start = asyncio.get_event_loop().time()
-            async with session.get(url, timeout=timeout) as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                    latency = (asyncio.get_event_loop().time() - start) * 1000
-                    models = [m['name'] for m in data.get('models', [])]
-                    return {
-                        "active": True,
-                        "latency_ms": latency,
-                        "models": models
-                    }
-    except Exception:
-        pass
-    return {"active": False, "latency_ms": 0, "models": []}
+        url = "http://localhost:11434/api/tags"
+        resp = requests.get(url, timeout=timeout)
+        if resp.status_code == 200:
+            data = resp.json()
+            m_list = [m['name'] for m in data.get('models', [])]
+            models.extend(m_list)
+            models_ollama.extend(m_list)
+            active = True
+            provider = "ollama"
+    except: pass
+
+    # 2. Check LM Studio (1234)
+    try:
+        url = "http://localhost:1234/v1/models"
+        resp = requests.get(url, timeout=timeout)
+        if resp.status_code == 200:
+            data = resp.json()
+            lm_list = [m['id'] for m in data.get('data', [])]
+            models.extend(lm_list)
+            models_lm_studio.extend(lm_list)
+            
+            if not active: 
+                active = True
+                provider = "lm_studio"
+    except: pass
+
+    return {
+        "active": active,
+        "latency_ms": 10 if active else 0,
+        "models": models,
+        "models_ollama": models_ollama,
+        "models_lm_studio": models_lm_studio,
+        "provider": provider
+    }
+
+async def check_ollama(timeout=2.0) -> dict:
+    """Check Ollama via requests in a thread to be robust"""
+    return await asyncio.to_thread(check_ollama_sync, timeout)
 
 # Stubs
 local_stub = ProviderBase("local-stub", "chat")
@@ -55,6 +93,8 @@ async def probe_providers():
             "status": "active",
             "models": ollama_status["models"]
         })
+        
+    return results
         
     
 @router.post("/providers/ollama/pull_default")

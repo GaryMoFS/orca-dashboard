@@ -1,0 +1,21 @@
+{
+    "layout_id": "work_pro",
+    "modules": [
+        {
+            "id": "chat.advanced",
+            "position": "left"
+        },
+        {
+            "id": "tts.standard",
+            "position": "right"
+        },
+        {
+            "id": "provenance.bundle",
+            "position": "bottom"
+        },
+        {
+            "id": "admin.audit",
+            "position": "bottom"
+        }
+    ]
+}

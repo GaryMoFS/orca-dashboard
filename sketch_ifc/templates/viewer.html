@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Model Preview</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: white;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+
+        model-viewer {
+            width: 100vw;
+            height: 100vh;
+            background-color: #111;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .controls {
+            pointer-events: auto;
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        a.btn {
+            text-decoration: none;
+            background: #333;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            border: 1px solid #555;
+        }
+
+        a.btn:hover {
+            background: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <model-viewer src="{{ glb_url }}" camera-controls auto-rotate shadow-intensity="1" environment-image="neutral"
+        exposure="1" ar ar-modes="webxr scene-viewer quick-look"></model-viewer>
+
+    <div class="overlay">
+        <h2>IFC Preview</h2>
+        <div>Generated from sketch</div>
+        <div class="controls">
+            <a href="/" class="btn">New Sketch</a>
+            <a href="{{ glb_url.replace('.glb', '.ifc') }}" class="btn" download>Download IFC</a>
+            <a href="{{ glb_url }}" class="btn" download>Download GLB</a>
+        </div>
+    </div>
+</body>
+
+</html>

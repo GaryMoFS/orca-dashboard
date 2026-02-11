@@ -1,0 +1,9 @@
+{
+  "run_id": "7ce807e7-3b03-4e58-ac97-aca6df4dab4c",
+  "provider_id": "stub",
+  "model": "stub-v1",
+  "prompt_sha256": "f8f7eaf0382260c1602face53f604139c0ad1ef517fc4128ba7f4e708b0d345f",
+  "output_sha256": "fe652b6be4c6a77b072a709c13a91c380601e0baac9c5120d1941b847b603418",
+  "output_chars": 38,
+  "created_ts": "2026-02-07T05:52:39.481216Z"
+}

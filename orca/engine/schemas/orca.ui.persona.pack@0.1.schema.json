@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Orca Persona Pack",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "version": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "entitlement": {
+            "type": "object",
+            "properties": {
+                "mode": {
+                    "enum": [
+                        "free",
+                        "paid"
+                    ]
+                },
+                "sku": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "mode"
+            ]
+        },
+        "components": {
+            "type": "object",
+            "properties": {
+                "layout": {
+                    "type": "string"
+                },
+                "theme": {
+                    "type": "string"
+                },
+                "quests": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "required": [
+        "id",
+        "version",
+        "name",
+        "entitlement",
+        "components"
+    ]
+}

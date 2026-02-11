@@ -1,0 +1,1 @@
+{"layout_id": "home_standard", "modules": [{"id": "chat.basic", "position": "TOP_SECRET"}, {"id": "tts.standard", "position": "right"}, {"id": "provenance.viewer", "position": "bottom"}]}

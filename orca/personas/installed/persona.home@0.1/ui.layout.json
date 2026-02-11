@@ -1,0 +1,17 @@
+{
+    "layout_id": "home_standard",
+    "modules": [
+        {
+            "id": "chat.basic",
+            "position": "left"
+        },
+        {
+            "id": "tts.standard",
+            "position": "right"
+        },
+        {
+            "id": "provenance.viewer",
+            "position": "bottom"
+        }
+    ]
+}

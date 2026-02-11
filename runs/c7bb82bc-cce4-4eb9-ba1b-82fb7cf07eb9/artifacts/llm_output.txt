@@ -1,0 +1,14 @@
+Hello! As ORCA Control, I'm happy to assist you. According to my systems, today's date is Sunday, February 8th, 2026.
+
+To answer your question, a Tuesday would be the following:
+
+* Next Tuesday would be February 9th, 2026.
+* And then again on February 16th, 2026.
+* Continuing, there would be Tuesdays on:
+	+ March 2nd, 2026
+	+ March 9th, 2026
+	+ March 16th, 2026
+	+ ...
+	+ December 28th, 2026 (last Tuesday of the year)
+
+In total, there are 52 Tuesdays in the year 2026.

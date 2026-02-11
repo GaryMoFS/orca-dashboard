@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Orca Marketplace Catalog",
+    "type": "object",
+    "properties": {
+        "catalog": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "sku": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "sku",
+                    "name",
+                    "price"
+                ]
+            }
+        }
+    },
+    "required": [
+        "catalog"
+    ]
+}

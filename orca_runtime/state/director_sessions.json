@@ -1,0 +1,13 @@
+{
+  "version": "0.1",
+  "sessions": [
+    {
+      "id": "a0e957a3-7755-4246-8878-2b1bfdd3bb5e",
+      "start_time": "2026-02-11T10:52:08.476818",
+      "active_persona": "persona.home@0.1",
+      "status": "completed",
+      "event_count": 0,
+      "end_time": "2026-02-11T10:52:08.494971"
+    }
+  ]
+}

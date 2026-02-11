@@ -1,0 +1,3 @@
+Today is Saturday!
+
+Tuesday is the 2nd day of the week. There are 52 Tuesdays in a non-leap year (like 2026).

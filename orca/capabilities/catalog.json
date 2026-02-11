@@ -1,0 +1,391 @@
+[
+    {
+        "id": "cap.txt_to_ifc",
+        "title": "Text to IFC",
+        "description": "Convert natural language building descriptions to Industry Foundation Classes (IFC) models.",
+        "status": "demo",
+        "inputs": [
+            "text"
+        ],
+        "outputs": [
+            "ifc",
+            "manifest",
+            "receipt"
+        ],
+        "tags": [
+            "generative",
+            "bim"
+        ],
+        "persona_gates": [
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "python tools/verify_txt_to_ifc_m14.py"
+            ]
+        },
+        "actions": [
+            {
+                "id": "run_demo",
+                "title": "Run v0 Demo",
+                "description": "Generate a minimal IFC box room from parameters.",
+                "entrypoint": "python:orca.capabilities.txt_to_ifc.txt_to_ifc:run",
+                "param_schema": {
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "default": "Room"
+                        },
+                        "width_mm": {
+                            "type": "integer",
+                            "default": 4000,
+                            "minimum": 500,
+                            "maximum": 50000
+                        },
+                        "depth_mm": {
+                            "type": "integer",
+                            "default": 3000,
+                            "minimum": 500,
+                            "maximum": 50000
+                        },
+                        "height_mm": {
+                            "type": "integer",
+                            "default": 2700,
+                            "minimum": 500,
+                            "maximum": 20000
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ]
+                },
+                "outputs": [
+                    "ifc",
+                    "manifest"
+                ]
+            }
+        ]
+    },
+    {
+        "id": "cap.pdf_to_manifest",
+        "title": "PDF to Construction Manifest",
+        "description": "Extract structured procurement data and bill of quantities from PDF sets.",
+        "status": "idea",
+        "inputs": [
+            "pdf"
+        ],
+        "outputs": [
+            "json",
+            "csv"
+        ],
+        "tags": [
+            "ocr",
+            "procurement"
+        ],
+        "persona_gates": [
+            "retail",
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.pdf_to_manifest"
+            ]
+        }
+    },
+    {
+        "id": "cap.txt_to_step",
+        "title": "Text to STEP",
+        "description": "Convert textual mechanical descriptions to STEP (ISO 10303) CAD formats.",
+        "status": "idea",
+        "inputs": [
+            "text"
+        ],
+        "outputs": [
+            "step"
+        ],
+        "tags": [
+            "generative",
+            "cad"
+        ],
+        "persona_gates": [
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.txt_to_step"
+            ]
+        }
+    },
+    {
+        "id": "cap.ifc_to_glb",
+        "title": "IFC to GLB",
+        "description": "Optimized conversion of BIM/IFC data to web-ready GLB/gLTF assets.",
+        "status": "demo",
+        "inputs": [
+            "ifc"
+        ],
+        "outputs": [
+            "glb"
+        ],
+        "tags": [
+            "visualization",
+            "web"
+        ],
+        "persona_gates": [
+            "home",
+            "work",
+            "retail",
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.ifc_to_glb"
+            ]
+        }
+    },
+    {
+        "id": "cap.sketch_to_render",
+        "title": "Sketch to Render",
+        "description": "Generate high-fidelity architectural visualizations from hand-drawn sketches.",
+        "status": "demo",
+        "inputs": [
+            "image"
+        ],
+        "outputs": [
+            "image"
+        ],
+        "tags": [
+            "generative",
+            "viz"
+        ],
+        "persona_gates": [
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.sketch_to_render"
+            ]
+        }
+    },
+    {
+        "id": "cap.sketch_to_ifc",
+        "title": "Sketch to IFC",
+        "description": "Heuristic extraction of spatial volumes and wall layouts from orthographic sketches to IFC.",
+        "status": "idea",
+        "inputs": [
+            "image"
+        ],
+        "outputs": [
+            "ifc"
+        ],
+        "tags": [
+            "generative",
+            "bim"
+        ],
+        "persona_gates": [
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.sketch_to_ifc"
+            ]
+        }
+    },
+    {
+        "id": "cap.opencnc",
+        "title": "OpenCNC Toolpath Generation",
+        "description": "Standardized generation of CNC toolpaths (G-Code) for distributed fabrication.",
+        "status": "idea",
+        "inputs": [
+            "step",
+            "ifc"
+        ],
+        "outputs": [
+            "g-code"
+        ],
+        "tags": [
+            "fabrication",
+            "cnc"
+        ],
+        "persona_gates": [
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.opencnc"
+            ]
+        }
+    },
+    {
+        "id": "cap.proposal_generation",
+        "title": "Proposal Generation",
+        "description": "Automated assembly of design proposals, including cost estimates and technical advisory.",
+        "status": "demo",
+        "inputs": [
+            "manifest",
+            "render"
+        ],
+        "outputs": [
+            "pdf"
+        ],
+        "tags": [
+            "office",
+            "sales"
+        ],
+        "persona_gates": [
+            "retail",
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.proposal_generation"
+            ]
+        }
+    },
+    {
+        "id": "cap.codes_and_standards_compliance",
+        "title": "Codes & Standards Compliance",
+        "description": "Automated audit of designs against AS 3600, AS 4100, and NCC/BCA requirements.",
+        "status": "demo",
+        "inputs": [
+            "ifc",
+            "text"
+        ],
+        "outputs": [
+            "report"
+        ],
+        "tags": [
+            "compliance",
+            "engineering"
+        ],
+        "persona_gates": [
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.codes_and_standards"
+            ]
+        }
+    },
+    {
+        "id": "cap.cost_management",
+        "title": "Cost Management",
+        "description": "Dynamic tracking of material costs and assembly labor against project budget.",
+        "status": "idea",
+        "inputs": [
+            "manifest"
+        ],
+        "outputs": [
+            "json"
+        ],
+        "tags": [
+            "finance"
+        ],
+        "persona_gates": [
+            "retail",
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.cost_management"
+            ]
+        }
+    },
+    {
+        "id": "cap.tendering",
+        "title": "Tendering",
+        "description": "Bridge between project specifications and fabricator bid management.",
+        "status": "idea",
+        "inputs": [
+            "manifest"
+        ],
+        "outputs": [
+            "bids"
+        ],
+        "tags": [
+            "procurement"
+        ],
+        "persona_gates": [
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.tendering"
+            ]
+        }
+    },
+    {
+        "id": "cap.logistics",
+        "title": "Logistics",
+        "description": "Just-in-time delivery orchestration for prefab assemblies from node to site.",
+        "status": "idea",
+        "inputs": [
+            "manifest"
+        ],
+        "outputs": [
+            "schedule"
+        ],
+        "tags": [
+            "operations"
+        ],
+        "persona_gates": [
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.logistics"
+            ]
+        }
+    },
+    {
+        "id": "cap.health_defense_government_templates",
+        "title": "Health & Defense Templates",
+        "description": "Specialized design schema enforcement for highly regulated government facilities.",
+        "status": "idea",
+        "inputs": [
+            "schema"
+        ],
+        "outputs": [
+            "ifc"
+        ],
+        "tags": [
+            "enterprise",
+            "templates"
+        ],
+        "persona_gates": [
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "echo stub: cap.health_defense"
+            ]
+        }
+    },
+    {
+        "id": "cap.persona_workflows",
+        "title": "Persona Workflows",
+        "description": "Context-aware UI/Capability gating based on the active persona profile.",
+        "status": "prod",
+        "inputs": [
+            "persona_id"
+        ],
+        "outputs": [
+            "capabilities_list"
+        ],
+        "tags": [
+            "system",
+            "ui"
+        ],
+        "persona_gates": [
+            "home",
+            "work",
+            "retail",
+            "pro"
+        ],
+        "scripts": {
+            "verify": [
+                "python tools/verify_m8_personas.py"
+            ]
+        }
+    }
+]

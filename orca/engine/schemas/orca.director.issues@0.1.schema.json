@@ -1,0 +1,73 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ORCA Director Issues",
+    "type": "object",
+    "required": [
+        "issues"
+    ],
+    "properties": {
+        "issues": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "title",
+                    "status",
+                    "severity",
+                    "created_ts"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "enum": [
+                            "open",
+                            "triage",
+                            "in_progress",
+                            "fixed",
+                            "released"
+                        ]
+                    },
+                    "severity": {
+                        "enum": [
+                            "low",
+                            "med",
+                            "high",
+                            "crit"
+                        ]
+                    },
+                    "area": {
+                        "type": "string"
+                    },
+                    "links": {
+                        "type": "object",
+                        "properties": {
+                            "quest": {
+                                "type": "string"
+                            },
+                            "ledger": {
+                                "type": "string"
+                            },
+                            "capability": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "created_ts": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_ts": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            }
+        }
+    }
+}

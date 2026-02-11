@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ORCA Director Inbox Manifest",
+    "type": "object",
+    "properties": {
+        "inbox_id": {
+            "type": "string"
+        },
+        "files": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "hash_sha256": {
+                        "type": "string"
+                    },
+                    "size_bytes": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "name",
+                    "hash_sha256",
+                    "size_bytes"
+                ]
+            }
+        }
+    },
+    "required": [
+        "inbox_id",
+        "files"
+    ]
+}

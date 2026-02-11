@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "id": "7c822646-a3a6-47d4-ab8a-5ea7e3f37ddb",
+  "timestamp": 1770543575.0938742,
+  "actor": "fspu-ifc-gen-v1",
+  "artifacts": [
+    {
+      "name": "signed_demo.ifc",
+      "hash": "76dd4ee7380514910f79d08ccfb5690ed4f5e161910627fdf5cd129e2ce57db9",
+      "algo": "sha256",
+      "size": 5132,
+      "mime_type": "application/x-step"
+    },
+    {
+      "name": "geometry_metrics.json",
+      "hash": "9ea85994362b592857f6c15fc2311e22cedb0a20f6a047c1d322dacd4af9feb0",
+      "algo": "sha256",
+      "size": 99,
+      "mime_type": "application/json"
+    }
+  ],
+  "provenance": {
+    "source_task_id": "task-demo-123",
+    "methodology": "parametric-generation-v2",
+    "params": {
+      "schema_checksum": "stub",
+      "version": "1.0"
+    }
+  },
+  "signature": {
+    "value": "4013f4fa880ad8d27613a29351276017aa9ec039d457e3ef92c1dddf2a5a129d",
+    "algo": "fstack-sim-v1",
+    "key_id": "dev-key-001"
+  }
+}

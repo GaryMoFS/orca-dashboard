@@ -1,0 +1,10 @@
+{
+    "catalog": [
+        {
+            "sku": "sku.orca.pro.01",
+            "name": "Orca Professional License",
+            "description": "Unlocks advanced audit and provenance tools.",
+            "price": "$99/mo"
+        }
+    ]
+}

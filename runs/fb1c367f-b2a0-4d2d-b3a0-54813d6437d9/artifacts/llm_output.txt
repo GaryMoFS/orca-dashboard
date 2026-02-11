@@ -1,0 +1,10 @@
+It's Saturday! 
+
+In the year 2026, there are 5 Tuesdays in a month (February has only 2). Let me calculate...
+
+There are 52 weeks in a year. Adding Tuesday to that count, I get:
+
+52 weeks * 1 Tuesday per week = 52 Tuesdays
+Adding February's 2 Tuesdays: 52 + 2 = 54
+
+So, there are 54 Tuesdays in the year 2026!

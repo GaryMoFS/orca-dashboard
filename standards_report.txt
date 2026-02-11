@@ -1,0 +1,36 @@
+------------------------------
+Example 1: Concrete N32 in B1 environment
+Constraints: {'concrete_grade': 'N32', 'exposure_class': 'B1'}
+Note:
+Standard Reference: AS 3600:2018 Concrete Structures
+- Concrete Grade: N32 (Standard)
+- Exposure Environment: B1 (Coastal, 1km-50km from coast)
+
+
+------------------------------
+Example 2: Steel structure with grade 350
+Constraints: {'steel_grade': '350'}
+Note:
+Standard Reference: AS 4100:1998 Steel Structures
+- Steel Grade: 350 (Yield Strength: 350 MPa)
+
+
+------------------------------
+Example 3: Access ramp 1:12 check
+Constraints: {'ramp_rise': 150.0, 'ramp_length': 1800.0}
+Note:
+Standard Reference: AS 1428.1-2009 Design for Access and Mobility
+- Ramp Assessment: Non-Compliant: Gradient 0.08 (Max 1:14)
+- Door Assessment: Compliant: Width 850mm
+
+
+------------------------------
+Example 4: C4 wind zone with timber (should trigger custom rule)
+Constraints: {'exposure_class': 'C4', 'wind_class': 'C4', 'timber_grade': 'F17'}
+Note:
+Standard Reference: AS 1684.2-2010 Residential Timber-Framed Construction
+- Wind Classification: C4 (Cyclonic, exposed (extreme))
+- Timber Stress Grade: F17 (Bending Strength: 25 MPa)
+
+Note:
+SITE RULE: Timber construction prohibited in Cyclonic C4 zones.

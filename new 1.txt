@@ -1,0 +1,90 @@
+PowerShell 7.5.4
+PS C:\Users\Gary> pip install huggingface_hub[cli]
+Requirement already satisfied: huggingface_hub[cli] in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (0.35.3)
+Requirement already satisfied: filelock in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from huggingface_hub[cli]) (3.20.0)
+Requirement already satisfied: fsspec>=2023.5.0 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from huggingface_hub[cli]) (2025.12.0)
+Requirement already satisfied: packaging>=20.9 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from huggingface_hub[cli]) (26.0)
+Requirement already satisfied: pyyaml>=5.1 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from huggingface_hub[cli]) (6.0.3)
+Requirement already satisfied: requests in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from huggingface_hub[cli]) (2.32.5)
+Requirement already satisfied: tqdm>=4.42.1 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from huggingface_hub[cli]) (4.67.1)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from huggingface_hub[cli]) (4.15.0)
+Collecting InquirerPy==0.3.4 (from huggingface_hub[cli])
+  Downloading InquirerPy-0.3.4-py3-none-any.whl.metadata (8.1 kB)
+Collecting pfzy<0.4.0,>=0.3.1 (from InquirerPy==0.3.4->huggingface_hub[cli])
+  Downloading pfzy-0.3.4-py3-none-any.whl.metadata (4.9 kB)
+Requirement already satisfied: prompt-toolkit<4.0.0,>=3.0.1 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from InquirerPy==0.3.4->huggingface_hub[cli]) (3.0.52)
+Requirement already satisfied: wcwidth in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from prompt-toolkit<4.0.0,>=3.0.1->InquirerPy==0.3.4->huggingface_hub[cli]) (0.5.3)
+Requirement already satisfied: colorama in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from tqdm>=4.42.1->huggingface_hub[cli]) (0.4.6)
+Requirement already satisfied: charset_normalizer<4,>=2 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from requests->huggingface_hub[cli]) (3.4.3)
+Requirement already satisfied: idna<4,>=2.5 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from requests->huggingface_hub[cli]) (3.11)
+Requirement already satisfied: urllib3<3,>=1.21.1 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from requests->huggingface_hub[cli]) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in .\AppData\Local\Programs\Python\Python312\Lib\site-packages (from requests->huggingface_hub[cli]) (2025.10.5)
+Downloading InquirerPy-0.3.4-py3-none-any.whl (67 kB)
+Downloading pfzy-0.3.4-py3-none-any.whl (8.5 kB)
+Installing collected packages: pfzy, InquirerPy
+Successfully installed InquirerPy-0.3.4 pfzy-0.3.4
+PS C:\Users\Gary> huggingface-cli download microsoft/speecht5_tts --local-dir models/speecht5
+⚠️  Warning: 'huggingface-cli download' is deprecated. Use 'hf download' instead.
+Fetching 9 files:   0%|                                                                          | 0/9 [00:00<?, ?it/s]Still waiting to acquire lock on models\speecht5\.cache\huggingface\.gitignore.lock (elapsed: 0.1 seconds)
+Still waiting to acquire lock on models\speecht5\.cache\huggingface\.gitignore.lock (elapsed: 0.1 seconds)
+Downloading 'pytorch_model.bin' to 'models\speecht5\.cache\huggingface\download\Q1p2l2BzM1m6P5jKvr8WTq1TUio=.d60d28067349ef66b50d8cd643ae56b6d6b8f27def929bc4ef6fcad907954190.incomplete'
+Downloading 'spm_char.model' to 'models\speecht5\.cache\huggingface\download\zVidPRIQ0NmW6svTXwju-VnPJFQ=.7fcc48f3e225f627b1641db410ceb0c8649bd2b0c982e150b03f8be3728ab560.incomplete'
+Downloading 'preprocessor_config.json' to 'models\speecht5\.cache\huggingface\download\PYH5dHjks7Ei0Yd3X0Z8xIwsCNQ=.56c1f9d83dd904d72234cf309b82fc5aa6c84e9a.incomplete'
+Downloading 'config.json' to 'models\speecht5\.cache\huggingface\download\8_PA_wEVGiVa2goH2H4KQOQpvVY=.514fdbbaeba312703da722a42d8b9a2092b9ab17.incomplete'
+Downloading 'added_tokens.json' to 'models\speecht5\.cache\huggingface\download\SeqzFlf9ZNZ3or_wZAOIdsM3Yxw=.cd5b477a9075c49d99de65622db37bb06a251985.incomplete'
+                                                                                                                       Downloading 'special_tokens_map.json' to 'models\speecht5\.cache\huggingface\download\ahkChHUJFxEmOdq5GDFEmerRzCY=.4ee24ec69861cfc94abbe2c8c934aa0744aa623c.incomplete'
+                                                                                                                       Downloading '.gitattributes' to 'models\speecht5\.cache\huggingface\download\wPaCkH-WbT7GsmxMKKrNZTV4nSM=.c7d9f3332a950355d5a77d85000f05e6f45435ea.incomplete'                                                       | 0.00/238k [00:00<?, ?B/s]
+Downloading 'README.md' to 'models\speecht5\.cache\huggingface\download\Xn7B-BWUGOee2Y6hCZtEhtFu4BE=.af29df33f059ac33f51d4216d9c904658aef35de.incomplete'
+preprocessor_config.json: 100%|███████████████████████████████████████████████████████████████| 433/433 [00:00<?, ?B/s]
+Download complete. Moving file to models\speecht5\preprocessor_config.json
+config.json: 2.06kB [00:00, 763kB/s]
+Download complete. Moving file to models\speecht5\config.json                                | 0.00/433 [00:00<?, ?B/s]
+added_tokens.json: 100%|████████████████████████████████████████████████████████████████████| 40.0/40.0 [00:00<?, ?B/s]
+Download complete. Moving file to models\speecht5\added_tokens.json
+special_tokens_map.json: 100%|████████████████████████████████████████████████████████████████| 234/234 [00:00<?, ?B/s]
+Download complete. Moving file to models\speecht5\special_tokens_map.json                   | 0.00/40.0 [00:00<?, ?B/s]
+README.md: 10.8kB [00:00, 2.93MB/s]
+special_tokens_map.json:   0%|                                                               | 0.00/234 [00:00<?, ?B/s]
+.gitattributes: 1.48kB [00:00, 1.46MB/s]
+Download complete. Moving file to models\speecht5\.gitattributes
+Fetching 9 files:  11%|███████▎                                                          | 1/9 [00:03<00:30,  3.75s/it]Downloading 'tokenizer_config.json' to 'models\speecht5\.cache\huggingface\download\vzaExXFZNBay89bvlQv-ZcI6BTg=.8ec6dd020a165d2e720a3cd30a8fd00463b12bd9.incomplete'
+tokenizer_config.json: 100%|██████████████████████████████████████████████████████████████████| 232/232 [00:00<?, ?B/s]
+Download complete. Moving file to models\speecht5\tokenizer_config.json
+spm_char.model: 100%|███████████████████████████████████████████████████████████████| 238k/238k [00:03<00:00, 67.6kB/s]
+Download complete. Moving file to models\speecht5\spm_char.model                             | 0.00/232 [00:00<?, ?B/s]
+pytorch_model.bin: 100%|████████████████████████████████████████████████████████████| 585M/585M [00:50<00:00, 11.5MB/s]
+Download complete. Moving file to models\speecht5\pytorch_model.bin█████████████████| 585M/585M [00:50<00:00, 10.4MB/s]
+Fetching 9 files: 100%|██████████████████████████████████████████████████████████████████| 9/9 [00:53<00:00,  5.99s/it]
+C:\Users\Gary\models\speecht5
+PS C:\Users\Gary> huggingface-cli download microsoft/speecht5_tts --local-dir models/canopyai/Orpheus-TTS\
+⚠️  Warning: 'huggingface-cli download' is deprecated. Use 'hf download' instead.
+Fetching 9 files:   0%|                                                                          | 0/9 [00:00<?, ?it/s]Downloading 'pytorch_model.bin' to 'models\canopyai\Orpheus-TTS\.cache\huggingface\download\Q1p2l2BzM1m6P5jKvr8WTq1TUio=.d60d28067349ef66b50d8cd643ae56b6d6b8f27def929bc4ef6fcad907954190.incomplete'
+Downloading 'spm_char.model' to 'models\canopyai\Orpheus-TTS\.cache\huggingface\download\zVidPRIQ0NmW6svTXwju-VnPJFQ=.7fcc48f3e225f627b1641db410ceb0c8649bd2b0c982e150b03f8be3728ab560.incomplete'
+Downloading 'special_tokens_map.json' to 'models\canopyai\Orpheus-TTS\.cache\huggingface\download\ahkChHUJFxEmOdq5GDFEmerRzCY=.4ee24ec69861cfc94abbe2c8c934aa0744aa623c.incomplete'
+Downloading 'added_tokens.json' to 'models\canopyai\Orpheus-TTS\.cache\huggingface\download\SeqzFlf9ZNZ3or_wZAOIdsM3Yxw=.cd5b477a9075c49d99de65622db37bb06a251985.incomplete'
+Downloading '.gitattributes' to 'models\canopyai\Orpheus-TTS\.cache\huggingface\download\wPaCkH-WbT7GsmxMKKrNZTV4nSM=.c7d9f3332a950355d5a77d85000f05e6f45435ea.incomplete'
+Downloading 'preprocessor_config.json' to 'models\canopyai\Orpheus-TTS\.cache\huggingface\download\PYH5dHjks7Ei0Yd3X0Z8xIwsCNQ=.56c1f9d83dd904d72234cf309b82fc5aa6c84e9a.incomplete'
+Downloading 'README.md' to 'models\canopyai\Orpheus-TTS\.cache\huggingface\download\Xn7B-BWUGOee2Y6hCZtEhtFu4BE=.af29df33f059ac33f51d4216d9c904658aef35de.incomplete'
+Downloading 'config.json' to 'models\canopyai\Orpheus-TTS\.cache\huggingface\download\8_PA_wEVGiVa2goH2H4KQOQpvVY=.514fdbbaeba312703da722a42d8b9a2092b9ab17.incomplete'
+special_tokens_map.json: 100%|████████████████████████████████████████████████████████████████| 234/234 [00:00<?, ?B/s]
+Download complete. Moving file to models\canopyai\Orpheus-TTS\special_tokens_map.json       | 0.00/585M [00:00<?, ?B/s]
+added_tokens.json: 100%|█████████████████████████████████████████████████████████████| 40.0/40.0 [00:00<00:00, 124kB/s]
+Download complete. Moving file to models\canopyai\Orpheus-TTS\added_tokens.json              | 0.00/234 [00:00<?, ?B/s]
+.gitattributes: 1.48kB [00:00, ?B/s]
+Download complete. Moving file to models\canopyai\Orpheus-TTS\.gitattributes                | 0.00/40.0 [00:00<?, ?B/s]
+README.md: 10.8kB [00:00, 1.97MB/s]                                                      | 1/9 [00:03<00:25,  3.21s/it]
+.gitattributes: 0.00B [00:00, ?B/s]                                                                                    Download complete. Moving file to models\canopyai\Orpheus-TTS\README.md
+preprocessor_config.json: 100%|████████████████████████████████████████████████████████| 433/433 [00:00<00:00, 722kB/s]
+Download complete. Moving file to models\canopyai\Orpheus-TTS\preprocessor_config.json       | 0.00/433 [00:00<?, ?B/s]
+config.json: 2.06kB [00:00, 1.34MB/s]
+Download complete. Moving file to models\canopyai\Orpheus-TTS\config.json
+Downloading 'tokenizer_config.json' to 'models\canopyai\Orpheus-TTS\.cache\huggingface\download\vzaExXFZNBay89bvlQv-ZcI6BTg=.8ec6dd020a165d2e720a3cd30a8fd00463b12bd9.incomplete'
+tokenizer_config.json: 100%|██████████████████████████████████████████████████████████████████| 232/232 [00:00<?, ?B/s]
+Download complete. Moving file to models\canopyai\Orpheus-TTS\tokenizer_config.json
+spm_char.model: 100%|███████████████████████████████████████████████████████████████| 238k/238k [00:03<00:00, 72.9kB/s]
+Download complete. Moving file to models\canopyai\Orpheus-TTS\spm_char.model                 | 0.00/232 [00:00<?, ?B/s]
+pytorch_model.bin: 100%|████████████████████████████████████████████████████████████| 585M/585M [00:48<00:00, 12.2MB/s]
+Download complete. Moving file to models\canopyai\Orpheus-TTS\pytorch_model.bin█████| 585M/585M [00:48<00:00, 15.3MB/s]
+Fetching 9 files: 100%|██████████████████████████████████████████████████████████████████| 9/9 [00:51<00:00,  5.69s/it]
+C:\Users\Gary\models\canopyai\Orpheus-TTS
+PS C:\Users\Gary>

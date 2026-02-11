@@ -1,5 +1,13 @@
+aiofiles
+httpx
+pydantic
+requests
 fastapi
 uvicorn
-websockets
 python-multipart
-requests
+websockets
+aiohttp
+pyttsx3
+
+nvidia-ml-py
+psutil

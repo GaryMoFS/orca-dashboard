@@ -1,0 +1,9 @@
+{
+  "run_id": "71ebf1fa-bbfb-4cda-83bd-d7bb0eb16f7d",
+  "provider_id": "ollama_local",
+  "model": "llama3:8b",
+  "prompt_sha256": "ce9983482125a2a6b5e6b17235875463645ae9a8ec34a9743e880f8fa683abfb",
+  "output_sha256": "2185b97803ab057935b54225bacd98948181af0c18e7b88ee3ab3eb72e505009",
+  "output_chars": 276,
+  "created_ts": "2026-02-07T23:19:07.626532Z"
+}

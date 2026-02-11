@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# Runtime State (Volatile)
+runtime/
+temp_*/
+
+# OS / IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Verification Artifacts
+# Ignore all by default
+_verification_artifacts/*
+# Except the .keep/ folder for long-term proof
+!_verification_artifacts/.keep/
+
+# Build / Web
+node_modules/
+dist/
+build/
+*.log

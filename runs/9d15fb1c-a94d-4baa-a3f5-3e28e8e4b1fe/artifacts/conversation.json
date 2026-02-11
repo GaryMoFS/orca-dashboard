@@ -1,0 +1,14 @@
+[
+  {
+    "role": "user",
+    "content": "what day is it today Tuesday as an example and how many of those day are in the year 2026",
+    "ts": "2026-02-08T03:37:31.364607Z"
+  },
+  {
+    "role": "assistant",
+    "content": "Hello! As ORCA Control, I'm happy to help you with your query.\n\nAccording to my systems, today's date is Sunday, February 8th, 2026. \n\nIf we were considering Tuesday as an example, there are 51 Tuesdays in the year 2026.",
+    "ts": "2026-02-08T03:37:37.651674Z",
+    "provider_id": "ollama_local",
+    "model": "llama3:8b"
+  }
+]
